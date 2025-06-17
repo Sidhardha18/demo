@@ -41,13 +41,18 @@
 
       <!-- Sector Filter -->
 <div class="row g-2">
-  <div >
+  <div class="col-6">
     <select id="sectorFilter" class="form-select">
       <option value="">All Sectors</option>
       
     </select>
   </div>
-
+  <div class="col-6">
+    <select id="locationFilter" class="form-select">
+      <option value="">All Locations</option>
+      
+    </select>
+  </div>
 </div>
 
 
@@ -228,12 +233,15 @@
 ];
   function populateFilters(companies) {
   const sectorSet = new Set();
+  const locationSet = new Set();
 
   companies.forEach(company => {
     sectorSet.add(company.sector);
+    locationSet.add(company.location);
   });
 
   const sectorFilter = document.getElementById("sectorFilter");
+  const locationFilter = document.getElementById("locationFilter");
 
   // Helper to add options
   function addOptions(selectEl, itemsSet) {
@@ -248,6 +256,7 @@
   }
 
   addOptions(sectorFilter, sectorSet);
+  addOptions(locationFilter, locationSet);
 }
 populateFilters(companies);
 
@@ -256,12 +265,14 @@ populateFilters(companies);
     list.innerHTML = "";
     const search = document.getElementById("searchInput").value.toLowerCase();
     const sector = document.getElementById("sectorFilter").value;
+    const location = document.getElementById("locationFilter").value;
     const typeCheckboxes = document.querySelectorAll("input[name='typeFilter']:checked");
     const types = Array.from(typeCheckboxes).map(cb => cb.value);
 
 const filtered = companies.filter(c => {
   return (!search || c.name.toLowerCase().includes(search)) &&
          (!sector || c.sector === sector) &&
+         (!location || c.location === location) &&
          (types.length === 0 || types.includes(c.type));
 });
 
@@ -345,6 +356,7 @@ filtered.forEach((c, index) => {
 
   document.getElementById("searchInput").addEventListener("input", renderCards);
   document.getElementById("sectorFilter").addEventListener("change", renderCards);
+  document.getElementById("locationFilter").addEventListener("change", renderCards);
   document.querySelectorAll("input[name='typeFilter']").forEach(cb =>
     cb.addEventListener("change", renderCards)
   );
