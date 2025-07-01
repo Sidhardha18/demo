@@ -11,6 +11,6 @@
     "prepare": "husky init"
   },
   "lint-staged": {
-    "**/*.js": "eslint --fix"
+    "**/*.js": "eslint"
   }
 }
