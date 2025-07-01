@@ -1,0 +1,45 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+logs/
+*.gz
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# ESLint cache
+.eslintcache
+
+# Husky
+.husky/_/
+
+# Coverage / testing
+coverage/
+.nyc_output/
+
+# Build
+dist/
+build/
+
+# Env files (sensitive)
+.env
+.env.local
+.env.*.local
+
+# Temp
+tmp/
+temp/
+
+# Lint-staged cache
+.staged/
